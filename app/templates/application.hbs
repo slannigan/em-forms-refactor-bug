@@ -1,0 +1,62 @@
+{{!-- The following component displays Ember's default welcome message. --}}
+{{!--{{welcome-page}}--}}
+{{!-- Feel free to remove this! --}}
+
+{{!--{{outlet}}--}}
+
+First name: {{person.first_name}}<br>
+Last name: {{person.last_name}}
+
+<br><br>
+
+<b>Form with submitButton=true, action='submit'</b>
+{{!-- WORKS --}}
+{{#em-form model=person action='submit' as |form|}}
+  {{form.input type='text' label='First name' property='first_name'}}
+  {{form.input type='text' label='Last name' property='last_name'}}
+{{/em-form}}
+
+<br><br>
+
+<b>Form with submitButton=false, no action, and a button with action='submit'</b>
+{{!-- WORKS --}}
+{{#em-form model=person submitButton=false as |form|}}
+  {{form.input type='text' label='First name' property='first_name'}}
+  {{form.input type='text' label='Last name' property='last_name'}}
+  <button {{action 'submit'}}>
+    Submit
+  </button>
+{{/em-form}}
+
+<br><br>
+
+<b>Form with submitButton=false, action='submit', and a button with type='submit'</b>
+{{!-- DOESN'T WORK --}}
+{{#em-form model=person submitButton=false action='submit' as |form|}}
+  {{form.input type='text' label='First name' property='first_name'}}
+  {{form.input type='text' label='Last name' property='last_name'}}
+  <button type='submit'>
+    Submit
+  </button>
+{{/em-form}}
+
+<br><br>
+
+<b>Form with submitButton=false, no action, and a button with type='submit'</b>
+{{!-- DOESN'T WORK --}}
+{{#em-form model=person submitButton=false as |form|}}
+  {{form.input type='text' label='First name' property='first_name'}}
+  {{form.input type='text' label='Last name' property='last_name'}}
+  <button type='submit'>
+    Submit
+  </button>
+{{/em-form}}
+
+<br><br>
+
+{{!--
+
+All of the above will work if the ember-rapid-forms package.json line is replaced with this:
+"ember-rapid-forms": "https://github.com/piceaTech/ember-rapid-forms/tarball/0f1a744d491789455fe2e82642f3c0a94e564ed0",
+
+--}}
